@@ -11,7 +11,10 @@ public class HouseController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
+		BoxCollider2D coll = GetComponent<BoxCollider2D> ();
+		coll.isTrigger = true;
+		coll.enabled = true;
 	}
 
 	void OnTriggerEnter2D( Collider2D other )

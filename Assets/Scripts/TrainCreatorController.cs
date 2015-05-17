@@ -9,6 +9,7 @@ public class TrainCreatorController: MonoBehaviour {
 	public static int numberOfTrains = 0;
 	
 	public GameObject trainPrefab;
+	public GameObject trainReversePrefab;
 	
 	void Start () 
 	{
@@ -34,7 +35,7 @@ public class TrainCreatorController: MonoBehaviour {
 		if (numberOfTrains < 25) {
 //			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
 			
-			Invoke ("SpawnTrain", 1f);
+			Invoke ("SpawnReverseTrain", 1f);
 
 			numberOfTrains++;
 			Debug.Log ("number of trains after spawn " + numberOfTrains);
@@ -42,7 +43,35 @@ public class TrainCreatorController: MonoBehaviour {
 			StartCoroutine(WaitForLessBubbles());
 		}
 	}
+
 	
+	void SpawnReverseTrain() {
+		Camera camera = Camera.main;
+		//		Vector3 cameraPos = camera.transform.position;
+		float xMax = camera.aspect * camera.orthographicSize;
+		float xRange = camera.aspect * camera.orthographicSize * 1.75f;
+		float yMax = camera.orthographicSize - 0.5f;
+		
+		Vector3 trainReversePos = 
+			new Vector3(-xMax,
+			            0,
+			            0);
+		
+		Instantiate(trainReversePrefab, trainReversePos, Quaternion.identity);
+		pastTime = Time.time - startTime;
+		pastTime = 1 + pastTime / 20;
+		if (numberOfTrains < 25) {
+			//			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
+			
+			Invoke ("SpawnTrain", 1f);
+			
+			numberOfTrains++;
+			Debug.Log ("number of reversed trains after spawn " + numberOfTrains);
+		} else {
+			StartCoroutine(WaitForLessBubbles());
+		}
+	}
+
 	IEnumerator WaitForLessBubbles(){
 		while (numberOfTrains >= 25) {
 			yield return new WaitForSeconds(0.1f);
