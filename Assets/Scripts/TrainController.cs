@@ -21,8 +21,8 @@ public class TrainController : MonoBehaviour {
 	void OnTriggerEnter2D( Collider2D other )
 	{
 		if (other.CompareTag ("House")) {
-			GetComponent<Animator>().SetBool( "IsTouched", true );
-
+			Destroy (gameObject);
+			TrainCreatorController.numberOfTrains--;
 		}
 	}
 }

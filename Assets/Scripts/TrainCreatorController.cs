@@ -13,10 +13,10 @@ public class TrainCreatorController: MonoBehaviour {
 	void Start () 
 	{
 		startTime = Time.time;
-		Invoke("SpawnBubble",minSpawnTime);
+		Invoke("SpawnTrain",minSpawnTime);
 	}
 	
-	void SpawnBubble() {
+	void SpawnTrain() {
 		Camera camera = Camera.main;
 		//		Vector3 cameraPos = camera.transform.position;
 		float xMax = camera.aspect * camera.orthographicSize;
@@ -32,9 +32,12 @@ public class TrainCreatorController: MonoBehaviour {
 		pastTime = Time.time - startTime;
 		pastTime = 1 + pastTime / 20;
 		if (numberOfTrains < 25) {
-			Invoke ("SpawnBubble", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
+//			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
+			
+			Invoke ("SpawnTrain", 1f);
+
 			numberOfTrains++;
-			Debug.Log ("number of bubbles after spawn " + numberOfTrains);
+			Debug.Log ("number of trains after spawn " + numberOfTrains);
 		} else {
 			StartCoroutine(WaitForLessBubbles());
 		}
@@ -45,6 +48,6 @@ public class TrainCreatorController: MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 			
 		}
-		Invoke ("SpawnBubble", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
+		Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
 	}
 }
