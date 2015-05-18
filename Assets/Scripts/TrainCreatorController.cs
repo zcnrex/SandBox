@@ -33,9 +33,9 @@ public class TrainCreatorController: MonoBehaviour {
 		pastTime = Time.time - startTime;
 		pastTime = 1 + pastTime / 20;
 		if (numberOfTrains < 25) {
-//			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
+//			Invoke ("SpawnReverseTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
 			
-			Invoke ("SpawnReverseTrain", 1f);
+//			Invoke ("SpawnReverseTrain", 10f);
 
 			numberOfTrains++;
 			Debug.Log ("number of trains after spawn " + numberOfTrains);
@@ -61,9 +61,9 @@ public class TrainCreatorController: MonoBehaviour {
 		pastTime = Time.time - startTime;
 		pastTime = 1 + pastTime / 20;
 		if (numberOfTrains < 25) {
-			//			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
+//			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
 			
-			Invoke ("SpawnTrain", 1f);
+//			Invoke ("SpawnTrain", 10f);
 			
 			numberOfTrains++;
 			Debug.Log ("number of reversed trains after spawn " + numberOfTrains);

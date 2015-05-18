@@ -21,7 +21,7 @@ public class HouseController : MonoBehaviour {
 	{
 		count++;
 		Debug.Log("Hit " + count);
-		if (other.CompareTag ("Train")) {
+		if (other.CompareTag ("Train") || other.CompareTag ("Car")) {
 			GetComponent<Animator>().SetBool( "IsTouched", true );
 			StartCoroutine(Shake(0.5f));
 			
