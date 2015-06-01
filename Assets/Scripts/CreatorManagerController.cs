@@ -2,10 +2,15 @@
 using System.Collections;
 
 public class CreatorManagerController : MonoBehaviour {
-	public static bool createTrain = true;
-	public static bool createPlane = false;
-	public static bool createTruck = false;
-	public static bool createCar = false;
+	public bool Train = false;
+	public bool Plane = false;
+	public bool Truck = false;
+	public bool Car = false;
+
+	public static bool createTrain;
+	public static bool createPlane;
+	public static bool createTruck;
+	public static bool createCar; 
 
 	// Use this for initialization
 	void Start () {
@@ -14,6 +19,9 @@ public class CreatorManagerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		createTrain = Train;
+		createPlane = Plane;
+		createTruck = Truck;
+		createCar = Car; 
 	}
 }

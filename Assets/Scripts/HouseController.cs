@@ -37,7 +37,7 @@ public class HouseController : MonoBehaviour {
 	IEnumerator Shake(float waitTime){
 		float endTime = Time.time + waitTime;
 		while (Time.time < endTime) {
-			Debug.Log ("Shake");
+//			Debug.Log ("Shake");
 			moveToward = new Vector3(-0.4f, currentPosition.y, currentPosition.z);
 			transform.position = moveToward;
 //			Debug.Log ("x " + transform.position.x + " y " + transform.position.y + " z " + transform.position.z);
