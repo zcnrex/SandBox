@@ -11,10 +11,23 @@ public class TrainCreatorController: MonoBehaviour {
 	public GameObject trainPrefab;
 	public GameObject trainReversePrefab;
 	
+	private bool started = false;
+
 	void Start () 
 	{
-		startTime = Time.time;
-		Invoke("SpawnTrain",minSpawnTime);
+		
+	}
+
+	void Update(){
+		if (CreatorManagerController.createTrain == true && started == false){
+			started = true;
+			startTime = Time.time;
+			Invoke("SpawnTrain",minSpawnTime);
+
+		}
+		else if (CreatorManagerController.createTrain == false && started == true){
+			started = false;
+		}
 	}
 	
 	void SpawnTrain() {
@@ -22,11 +35,11 @@ public class TrainCreatorController: MonoBehaviour {
 		//		Vector3 cameraPos = camera.transform.position;
 		float xMax = camera.aspect * camera.orthographicSize;
 		float xRange = camera.aspect * camera.orthographicSize * 1.75f;
-		float yMax = camera.orthographicSize - 0.5f;
+		float yMax = camera.orthographicSize - 2f;
 		
 		Vector3 trainPos = 
 			new Vector3(xMax,
-			            0,
+			            -yMax,
 			            0);
 		
 		Instantiate(trainPrefab, trainPos, Quaternion.identity);
@@ -35,7 +48,7 @@ public class TrainCreatorController: MonoBehaviour {
 		if (numberOfTrains < 25) {
 //			Invoke ("SpawnReverseTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
 			
-//			Invoke ("SpawnReverseTrain", 10f);
+			Invoke ("SpawnReverseTrain", 1f);
 
 			numberOfTrains++;
 			Debug.Log ("number of trains after spawn " + numberOfTrains);
@@ -50,11 +63,11 @@ public class TrainCreatorController: MonoBehaviour {
 		//		Vector3 cameraPos = camera.transform.position;
 		float xMax = camera.aspect * camera.orthographicSize;
 		float xRange = camera.aspect * camera.orthographicSize * 1.75f;
-		float yMax = camera.orthographicSize - 0.5f;
+		float yMax = camera.orthographicSize - 2f;
 		
 		Vector3 trainReversePos = 
 			new Vector3(-xMax,
-			            0,
+			            -yMax,
 			            0);
 		
 		Instantiate(trainReversePrefab, trainReversePos, Quaternion.identity);
@@ -63,7 +76,7 @@ public class TrainCreatorController: MonoBehaviour {
 		if (numberOfTrains < 25) {
 //			Invoke ("SpawnTrain", Random.Range (minSpawnTime / pastTime, maxSpawnTime / pastTime));
 			
-//			Invoke ("SpawnTrain", 10f);
+			Invoke ("SpawnTrain", 1f);
 			
 			numberOfTrains++;
 			Debug.Log ("number of reversed trains after spawn " + numberOfTrains);

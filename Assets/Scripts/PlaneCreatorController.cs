@@ -11,12 +11,24 @@ public class PlaneCreatorController: MonoBehaviour {
 	public GameObject planePrefab;
 	public GameObject planeReversePrefab;
 
+	private bool started = false;
+
 	void Start () 
 	{
-		startTime = Time.time;
-		Invoke("SpawnPlane",minSpawnTime);
+		
 	}
-	
+
+	void Update(){
+		if (CreatorManagerController.createPlane == true && started == false){
+			started = true;
+			startTime = Time.time;
+			Invoke("SpawnPlane",minSpawnTime);
+
+		}
+		else if (CreatorManagerController.createPlane == false && started == true){
+			started = false;
+		}
+	}
 	void SpawnPlane() {
 		Camera camera = Camera.main;
 		//		Vector3 cameraPos = camera.transform.position;

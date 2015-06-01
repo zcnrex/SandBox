@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class CreatorManagerController : MonoBehaviour {
-	public bool createTrain;
-	public bool createPlane;
-	public bool createTruck;
-	public bool createCar;
+	public static bool createTrain = true;
+	public static bool createPlane = false;
+	public static bool createTruck = false;
+	public static bool createCar = false;
 
 	// Use this for initialization
 	void Start () {

@@ -11,10 +11,23 @@ public class TruckCreatorController: MonoBehaviour {
 	public GameObject truckPrefab;
 	public GameObject truckReversePrefab;
 
+	private bool started = false;
+
 	void Start () 
 	{
-		startTime = Time.time;
-		Invoke("SpawnTrain",minSpawnTime);
+		
+	}
+
+	void Update(){
+		if (CreatorManagerController.createTruck == true && started == false){
+			started = true;
+			startTime = Time.time;
+			Invoke("SpawnTruck",minSpawnTime);
+
+		}
+		else if (CreatorManagerController.createTruck == false && started == true){
+			started = false;
+		}
 	}
 	
 	void SpawnTruck() {
